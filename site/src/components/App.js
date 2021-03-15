@@ -1,11 +1,20 @@
 import React from 'react';
-import logo from '../assets/PokeGuesser1.png';
-import pikachu from '../assets/Pikachu.png';
-import '../styles/App.css';
+import Play from './Play';
+import Game from './Game';
 import Footer from './Footer';
-import config from '../config';
+import logo from '../assets/PokeGuesser1.png';
+import '../styles/App.css';
 
 export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {inGame: false};
+  }
+
+  startGame = () => this.setState({inGame: true});
+
+  endGame = () => this.setState({inGame: false});
 
   render() {
     return (
@@ -14,16 +23,10 @@ export default class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <div className="content">
-          <p className="instructions">
-            Choose a random Pok&eacute;mon
-            <br />
-            and I will guess it correctly!
-          </p>
-          <img src={pikachu} className="pikachu" alt="logo" />
-          <br/>
-          <button className="play-button">
-            Play
-          </button>
+          {this.state.inGame
+            ? <Game endGame={this.endGame} />
+            : <Play startGame={this.startGame} />
+          }
         </div>
         <Footer />
       </div>

@@ -1,7 +1,6 @@
 service: pokeguesser-site
-
-org: talbotp
 app: pokeguesser
+org: talbotp
 
 frameworkVersion: '2'
 

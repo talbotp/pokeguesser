@@ -1,11 +1,10 @@
 service: pokeguesser-api
-
-org: talbotp
 app: pokeguesser
+org: talbotp
 
 frameworkVersion: '2'
 
-plugins:
+plugins: 
   - serverless-offline
 
 custom:
@@ -14,9 +13,8 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: python3.8
   stage: prod 
-  region: eu-west-1
   httpApi:
     cors:
       allowedOrigins:
@@ -26,13 +24,11 @@ provider:
         - Authorization
       allowedMethods:
         - GET
-        - POST
-        - PUT
 
 functions:
   guess:
-    handler: guess.handler
+    handler: src/guess.handler
     events:
       - httpApi:
           path: /guess
-          method: GET 
+          method: GET
